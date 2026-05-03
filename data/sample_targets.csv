@@ -1,0 +1,19 @@
+month,store_id,store_location,target_revenue
+2023-01,3,Astoria,40000
+2023-01,5,Lower Manhattan,50000
+2023-01,8,Hell's Kitchen,45000
+2023-02,3,Astoria,42000
+2023-02,5,Lower Manhattan,52000
+2023-02,8,Hell's Kitchen,47000
+2023-03,3,Astoria,45000
+2023-03,5,Lower Manhattan,55000
+2023-03,8,Hell's Kitchen,50000
+2023-04,3,Astoria,47000
+2023-04,5,Lower Manhattan,57000
+2023-04,8,Hell's Kitchen,52000
+2023-05,3,Astoria,50000
+2023-05,5,Lower Manhattan,60000
+2023-05,8,Hell's Kitchen,55000
+2023-06,3,Astoria,52000
+2023-06,5,Lower Manhattan,62000
+2023-06,8,Hell's Kitchen,57000
