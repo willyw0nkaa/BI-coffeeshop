@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_erp
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: coffee_shop
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init_postgres.sql:/docker-entrypoint-initdb.d/init.sql
+      # ↑ otomatis run init_postgres.sql saat pertama kali naik
+
+  clickhouse:
+    image: clickhouse/clickhouse-server
+    container_name: clickhouse_dw
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    environment:
+      CLICKHOUSE_USER: default
+      CLICKHOUSE_PASSWORD: ""
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+      # ↑ supaya data tidak hilang kalau restart
+
+  metabase:
+    image: metabase/metabase
+    container_name: metabase_dashboard
+    ports:
+      - "3000:3000"
+    depends_on:
+      - clickhouse
+      # ↑ metabase tunggu clickhouse siap dulu
+    volumes:
+      - metabase_data:/metabase-data
+      # ↑ simpan konfigurasi dashboard metabase
+
+volumes:
+  postgres_data:
+  clickhouse_data:
+  metabase_data:
